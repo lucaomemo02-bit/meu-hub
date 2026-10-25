@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meu Hub</title>
+<style>
+:root{--bg:#10131b;--panel:#191f2c;--card:#232c3d;--text:#f6f7fb;--muted:#aab5c7;--accent:#7c9cff;--glow:rgba(124,156,255,.3);--radius:16px}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+body{background:radial-gradient(ellipse at 85% 0%,#243252 0,transparent 42%),var(--bg)}
+header{padding:24px 4vw 18px;display:flex;align-items:center;justify-content:space-between;gap:18px;background:rgba(16,19,27,.78);border-bottom:1px solid #2a3447}
+.brand{font-size:clamp(25px,4vw,38px);font-weight:bold;letter-spacing:-1px}.brand span{color:var(--accent)}
+.subtitle{font-size:13px;color:var(--muted);margin-top:5px}
+.clock{font-size:14px;color:var(--muted);text-align:right}
+main{max-width:1200px;margin:auto;padding:24px 4vw 40px}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+h2{font-size:20px;margin:0}
+.hint{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.tile{display:block;min-height:112px;padding:17px 15px;border-radius:var(--radius);background:linear-gradient(145deg,#273249,#1c2331);border:2px solid #354159;color:var(--text);text-decoration:none;position:relative;overflow:hidden;transition:background .15s,border-color .15s}
+.tile:before{content:"";position:absolute;right:-22px;top:-28px;width:90px;height:90px;border-radius:50%;background:var(--glow)}
+.tile:focus,.tile:hover{outline:none;border-color:var(--accent);background:#344667;box-shadow:0 0 0 3px var(--glow)}
+.tile .symbol{font-size:28px;font-weight:bold;display:block;margin-bottom:14px}
+.tile .name{font-size:17px;font-weight:bold;display:block}
+.tile .desc{font-size:12px;color:#c3ccdc;display:block;margin-top:5px}
+.bottom{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;margin-top:22px}
+.panel{background:rgba(25,31,44,.9);border:1px solid #2b3548;border-radius:var(--radius);padding:18px}
+.panel h2{font-size:16px;margin-bottom:12px}
+.panel p{font-size:13px;line-height:1.5;color:var(--muted);margin:6px 0}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+button{font-family:inherit;color:var(--text);background:#2b3548;border:1px solid #43516b;border-radius:10px;padding:10px 12px;font-size:13px;cursor:pointer}
+button:focus,button:hover{outline:2px solid var(--accent);background:#354667}
+.small{font-size:11px!important}
+@media(max-width:750px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bottom{grid-template-columns:1fr}header{padding:18px 5vw}main{padding:18px 5vw}}
+@media(max-width:430px){.grid{gap:9px}.tile{padding:13px;min-height:100px}.tile .name{font-size:15px}}
+</style>
+</head>
+<body>
+<header>
+ <div><div class="brand">MEU <span>HUB</span></div><div class="subtitle">Tudo o que você usa, em um só lugar.</div></div>
+ <div class="clock" id="clock">SUA CENTRAL<br>DE ENTRETENIMENTO</div>
+</header>
+<main>
+ <div class="section-head"><h2>Aplicativos</h2><div class="hint">Use as setas e OK do controle</div></div>
+ <div class="grid" id="apps">
+  <a class="tile" href="https://www.youtube.com/"><span class="symbol">▶</span><span class="name">YouTube</span><span class="desc">Vídeos e canais</span></a>
+  <a class="tile" href="https://www.netflix.com/"><span class="symbol">N</span><span class="name">Netflix</span><span class="desc">Filmes e séries</span></a>
+  <a class="tile" href="https://www.primevideo.com/"><span class="symbol">P</span><span class="name">Prime Video</span><span class="desc">Filmes e originais</span></a>
+  <a class="tile" href="https://www.disneyplus.com/"><span class="symbol">D+</span><span class="name">Disney+</span><span class="desc">Filmes e séries</span></a>
+  <a class="tile" href="https://www.google.com/"><span class="symbol">G</span><span class="name">Google</span><span class="desc">Pesquisar na internet</span></a>
+  <a class="tile" href="https://www.twitch.tv/"><span class="symbol">T</span><span class="name">Twitch</span><span class="desc">Lives e jogos</span></a>
+  <a class="tile" href="https://www.pluto.tv/"><span class="symbol">P</span><span class="name">Pluto TV</span><span class="desc">Canais gratuitos</span></a>
+  <a class="tile" href="https://www.wikipedia.org/"><span class="symbol">W</span><span class="name">Wikipedia</span><span class="desc">Conhecimento</span></a>
+ </div>
+ <div class="bottom">
+  <section class="panel">
+   <h2>Personalizar visual</h2>
+   <p>Troque a cor de destaque e o tamanho dos cartões. A mudança vale nesta sessão do navegador.</p>
+   <div class="actions">
+    <button type="button" onclick="setTheme('#7c9cff')">Azul</button>
+    <button type="button" onclick="setTheme('#56d6b0')">Verde</button>
+    <button type="button" onclick="setTheme('#c18cff')">Roxo</button>
+    <button type="button" onclick="setTheme('#ffad66')">Laranja</button>
+    <button type="button" onclick="toggleSize()">Cartões grandes/compactos</button>
+   </div>
+  </section>
+  <section class="panel">
+   <h2>Acesso rápido</h2>
+   <p>Esta é uma página inicial independente. Ela não instala aplicativos na TV nem substitui o Smart Hub original.</p>
+   <p class="small">Dica: depois de publicar o site, adicione o endereço aos Favoritos do navegador da TV para abrir mais rápido.</p>
+  </section>
+ </div>
+</main>
+<script>
+function setTheme(color){
+ document.documentElement.style.setProperty('--accent',color);
+ document.documentElement.style.setProperty('--glow',color+'55');
+}
+var big=true;
+function toggleSize(){
+ var tiles=document.querySelectorAll('.tile');
+ big=!big;
+ for(var i=0;i<tiles.length;i++){tiles[i].style.minHeight=big?'112px':'82px';}
+}
+try{
+ var d=new Date();
+ var days=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+ var date=d.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'});
+ document.getElementById('clock').innerHTML=days[d.getDay()]+'<br>'+date;
+}catch(e){}
+</script>
+</body>
+</html>
