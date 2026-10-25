@@ -1,94 +1,253 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Meu Hub</title>
-<style>
-:root{--bg:#10131b;--panel:#191f2c;--card:#232c3d;--text:#f6f7fb;--muted:#aab5c7;--accent:#7c9cff;--glow:rgba(124,156,255,.3);--radius:16px}
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
-body{background:radial-gradient(ellipse at 85% 0%,#243252 0,transparent 42%),var(--bg)}
-header{padding:24px 4vw 18px;display:flex;align-items:center;justify-content:space-between;gap:18px;background:rgba(16,19,27,.78);border-bottom:1px solid #2a3447}
-.brand{font-size:clamp(25px,4vw,38px);font-weight:bold;letter-spacing:-1px}.brand span{color:var(--accent)}
-.subtitle{font-size:13px;color:var(--muted);margin-top:5px}
-.clock{font-size:14px;color:var(--muted);text-align:right}
-main{max-width:1200px;margin:auto;padding:24px 4vw 40px}
-.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
-h2{font-size:20px;margin:0}
-.hint{font-size:12px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.tile{display:block;min-height:112px;padding:17px 15px;border-radius:var(--radius);background:linear-gradient(145deg,#273249,#1c2331);border:2px solid #354159;color:var(--text);text-decoration:none;position:relative;overflow:hidden;transition:background .15s,border-color .15s}
-.tile:before{content:"";position:absolute;right:-22px;top:-28px;width:90px;height:90px;border-radius:50%;background:var(--glow)}
-.tile:focus,.tile:hover{outline:none;border-color:var(--accent);background:#344667;box-shadow:0 0 0 3px var(--glow)}
-.tile .symbol{font-size:28px;font-weight:bold;display:block;margin-bottom:14px}
-.tile .name{font-size:17px;font-weight:bold;display:block}
-.tile .desc{font-size:12px;color:#c3ccdc;display:block;margin-top:5px}
-.bottom{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;margin-top:22px}
-.panel{background:rgba(25,31,44,.9);border:1px solid #2b3548;border-radius:var(--radius);padding:18px}
-.panel h2{font-size:16px;margin-bottom:12px}
-.panel p{font-size:13px;line-height:1.5;color:var(--muted);margin:6px 0}
-.actions{display:flex;flex-wrap:wrap;gap:8px}
-button{font-family:inherit;color:var(--text);background:#2b3548;border:1px solid #43516b;border-radius:10px;padding:10px 12px;font-size:13px;cursor:pointer}
-button:focus,button:hover{outline:2px solid var(--accent);background:#354667}
-.small{font-size:11px!important}
-@media(max-width:750px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bottom{grid-template-columns:1fr}header{padding:18px 5vw}main{padding:18px 5vw}}
-@media(max-width:430px){.grid{gap:9px}.tile{padding:13px;min-height:100px}.tile .name{font-size:15px}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Hub TV</title>
+    <style>
+        :root {
+            --bg-color: #0f1015;
+            --card-bg: #1a1c24;
+            --focus-color: #4f46e5;
+            --focus-glow: rgba(79, 70, 229, 0.6);
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Container Principal */
+        .tv-container {
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Topo / Cabeçalho */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hub-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+
+        .clock {
+            font-size: 20px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Banner de Destaque (Hero) */
+        .hero-banner {
+            background: linear-gradient(90deg, rgba(20,22,30,0.9) 0%, rgba(20,22,30,0.4) 100%), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop') no-repeat center center/cover;
+            border-radius: 16px;
+            padding: 40px;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .hero-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 15px;
+        }
+
+        /* Fileiras Horizontais */
+        .row-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .row-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .row-cards {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 5px 2px;
+            scroll-behavior: smooth;
+        }
+
+        .row-cards::-webkit-scrollbar {
+            display: none; /* Ocultar barra de rolagem para visual limpo de TV */
+        }
+
+        /* Cartões de Aplicativos e Mídia */
+        .card {
+            min-width: 180px;
+            height: 110px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            color: var(--text-main);
+            flex-shrink: 0;
+        }
+
+        .card img, .card svg {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+
+        .card span {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* Estado Foco (Navegação por Controle Remoto) */
+        .card:focus, .card.selected {
+            outline: none;
+            border-color: var(--focus-color);
+            background-color: #232633;
+            transform: scale(1.08);
+            box-shadow: 0 0 15px var(--focus-glow);
+        }
+
+        /* Rodapé de Ajuda para Controle */
+        .remote-help {
+            margin-top: auto;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            padding-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-<header>
- <div><div class="brand">MEU <span>HUB</span></div><div class="subtitle">Tudo o que você usa, em um só lugar.</div></div>
- <div class="clock" id="clock">SUA CENTRAL<br>DE ENTRETENIMENTO</div>
-</header>
-<main>
- <div class="section-head"><h2>Aplicativos</h2><div class="hint">Use as setas e OK do controle</div></div>
- <div class="grid" id="apps">
-  <a class="tile" href="https://www.youtube.com/"><span class="symbol">▶</span><span class="name">YouTube</span><span class="desc">Vídeos e canais</span></a>
-  <a class="tile" href="https://www.netflix.com/"><span class="symbol">N</span><span class="name">Netflix</span><span class="desc">Filmes e séries</span></a>
-  <a class="tile" href="https://www.primevideo.com/"><span class="symbol">P</span><span class="name">Prime Video</span><span class="desc">Filmes e originais</span></a>
-  <a class="tile" href="https://www.disneyplus.com/"><span class="symbol">D+</span><span class="name">Disney+</span><span class="desc">Filmes e séries</span></a>
-  <a class="tile" href="https://www.google.com/"><span class="symbol">G</span><span class="name">Google</span><span class="desc">Pesquisar na internet</span></a>
-  <a class="tile" href="https://www.twitch.tv/"><span class="symbol">T</span><span class="name">Twitch</span><span class="desc">Lives e jogos</span></a>
-  <a class="tile" href="https://www.pluto.tv/"><span class="symbol">P</span><span class="name">Pluto TV</span><span class="desc">Canais gratuitos</span></a>
-  <a class="tile" href="https://www.wikipedia.org/"><span class="symbol">W</span><span class="name">Wikipedia</span><span class="desc">Conhecimento</span></a>
- </div>
- <div class="bottom">
-  <section class="panel">
-   <h2>Personalizar visual</h2>
-   <p>Troque a cor de destaque e o tamanho dos cartões. A mudança vale nesta sessão do navegador.</p>
-   <div class="actions">
-    <button type="button" onclick="setTheme('#7c9cff')">Azul</button>
-    <button type="button" onclick="setTheme('#56d6b0')">Verde</button>
-    <button type="button" onclick="setTheme('#c18cff')">Roxo</button>
-    <button type="button" onclick="setTheme('#ffad66')">Laranja</button>
-    <button type="button" onclick="toggleSize()">Cartões grandes/compactos</button>
-   </div>
-  </section>
-  <section class="panel">
-   <h2>Acesso rápido</h2>
-   <p>Esta é uma página inicial independente. Ela não instala aplicativos na TV nem substitui o Smart Hub original.</p>
-   <p class="small">Dica: depois de publicar o site, adicione o endereço aos Favoritos do navegador da TV para abrir mais rápido.</p>
-  </section>
- </div>
-</main>
-<script>
-function setTheme(color){
- document.documentElement.style.setProperty('--accent',color);
- document.documentElement.style.setProperty('--glow',color+'55');
-}
-var big=true;
-function toggleSize(){
- var tiles=document.querySelectorAll('.tile');
- big=!big;
- for(var i=0;i<tiles.length;i++){tiles[i].style.minHeight=big?'112px':'82px';}
-}
-try{
- var d=new Date();
- var days=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
- var date=d.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'});
- document.getElementById('clock').innerHTML=days[d.getDay()]+'<br>'+date;
-}catch(e){}
-</script>
+
+    <div class="tv-container">
+        <!-- Cabeçalho -->
+        <div class="header">
+            <div class="hub-title">📺 Meu Hub TV</div>
+            <div class="clock" id="clock">00:00</div>
+        </div>
+
+        <!-- Banner de Destaque -->
+        <div class="hero-banner">
+            <div class="hero-title">Bem-vindo ao seu Smart Hub</div>
+            <div class="hero-desc">Acesse seus aplicativos favoritos com rapidez e estilo direto na sua Samsung antiga.</div>
+        </div>
+
+        <!-- Fileira 1: Aplicativos Principais -->
+        <div class="row-section">
+            <div class="row-title">Aplicativos e Streaming</div>
+            <div class="row-cards">
+                <a href="https://www.youtube.com" class="card" tabindex="0">
+                    <svg viewBox="0 0 24 24" width="36" height="36" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>YouTube</span>
+                </a>
+                <a href="https://www.netflix.com" class="card" tabindex="0">
+                    <svg viewBox="0 0 24 24" width="36" height="36" fill="#e50914"><path d="M5.503 4.627v14.746h2.748v-5.892l3.418 5.892h3.294V4.627h-2.748v5.892L8.797 4.627z"/></svg>
+                    <span>Netflix</span>
+                </a>
+                <a href="https://www.primevideo.com" class="card" tabindex="0">
+                    <svg viewBox="0 0 24 24" width="36" height="36" fill="#00a8e1"><path d="M15.42 14.28c-.27.42-.64.76-1.11 1.02-.47.26-1.02.39-1.66.39-.74 0-1.39-.18-1.94-.54-.55-.36-.98-.87-1.28-1.54-.3-.67-.45-1.46-.45-2.38 0-.92.15-1.71.45-2.38.3-.67.73-1.18, 1.28-1.54.55-.36, 1.2-.54, 1.94-.54.64 0, 1.19.13, 1.66.39.47.26.84.6 1.11, 1.02l1.64-1.2c-.54-.76-1.22-1.35-2.04-1.77-.82-.42-1.76-.63-2.82-.63-1.32 0-2.48.33-3.48.99-1 .66-1.78, 1.56-2.34, 2.7-.56, 1.14-.84, 2.44-.84, 3.9, 0, 1.46.28, 2.76.84, 3.9.56, 1.14, 1.34, 2.04, 2.34, 2.7, 1,.66, 2.16.99, 3.48.99, 1.06 0, 2-.21, 2.82-.63.82-.42, 1.5-1.01, 2.04-1.77l-1.64-1.2z"/></svg>
+                    <span>Prime Video</span>
+                </a>
+                <a href="https://www.disneyplus.com" class="card" tabindex="0">
+                    <svg viewBox="0 0 24 24" width="36" height="36" fill="#113ccf"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.5v-7h2v7h-2zm1-9.5c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>
+                    <span>Disney+</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Fileira 2: Atalhos e Utilitários -->
+        <div class="row-section">
+            <div class="row-title">Atalhos e Ferramentas</div>
+            <div class="row-cards">
+                <a href="https://www.google.com" class="card" tabindex="0">
+                    <span style="font-size: 28px;">🌐</span>
+                    <span>Google</span>
+                </a>
+                <a href="https://twitch.tv" class="card" tabindex="0">
+                    <span style="font-size: 28px;">🎮</span>
+                    <span>Twitch</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="remote-help">
+        Use as setas do controle remoto para navegar e OK para abrir.
+    </div>
+
+    <script>
+        // Relógio em tempo real
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Foco inicial no primeiro cartão para facilitar o controle remoto
+        const cards = document.querySelectorAll('.card');
+        if (cards.length > 0) {
+            cards[0].focus();
+        }
+
+        // Suporte básico a navegação por setas no navegador da TV antiga (se suportado)
+        let currentIndex = 0;
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                currentIndex = (currentIndex + 1) % cards.length;
+                cards[currentIndex].focus();
+                e.preventDefault();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+                cards[currentIndex].focus();
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>
